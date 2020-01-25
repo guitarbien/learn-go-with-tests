@@ -16,3 +16,11 @@ jobs:
       uses: actions/checkout@v1
     - name: Test
       run: go test ./...
+    - name: Slack Notification
+      uses: homoluctus/slatify@master
+      if: always()
+      with:
+        type: ${{ job.status }}
+        job_name: '*integration test* ${{ matrix.go-version }} on ${{ matrix.platform }}'
+        url: ${{ secrets.SLACK_WEBHOOK }}
+        mention_if: 'failure'
