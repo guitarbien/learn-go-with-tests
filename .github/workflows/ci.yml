@@ -1,5 +1,11 @@
-on: [push, pull_request]
 name: ci
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron:  '0 4 * * *'
 jobs:
   test:
     strategy:
@@ -15,9 +21,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v1
     - name: Test
-      run: go test ./...
-    - name: Build
-      run: go build ./...
+      run: go test -v ./...
     - name: Slack Notification
       uses: homoluctus/slatify@master
       if: always()
