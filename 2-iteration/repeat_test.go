@@ -4,6 +4,8 @@ import "testing"
 
 func TestRepeat(t *testing.T) {
 	assertCorrectMessage := func(t *testing.T, expected string, repeated string) {
+		t.Helper()
+
 		if repeated != expected {
 			t.Errorf("expected %q but got %q", expected, repeated)
 		}
