@@ -54,7 +54,7 @@ func assertStrings(t *testing.T, got, want string) {
 func assertError(t *testing.T, got, want error) {
 	t.Helper()
 
-	if got == nil {
+	if got != want {
 		t.Fatal("expected to get an error.")
 	}
 }
