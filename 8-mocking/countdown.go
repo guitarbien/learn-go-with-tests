@@ -17,15 +17,15 @@ type Sleeper interface {
 }
 
 // for test
-type countdownOperationsSpy struct {
+type CountdownOperationsSpy struct {
 	Calls []string
 }
 
-func (s *countdownOperationsSpy) Sleep()  {
+func (s *CountdownOperationsSpy) Sleep()  {
 	s.Calls = append(s.Calls, sleep)
 }
 
-func (s *countdownOperationsSpy) Write(p []byte) (n int, err error) {
+func (s *CountdownOperationsSpy) Write(p []byte) (n int, err error) {
 	s.Calls = append(s.Calls, write)
 	return
 }
