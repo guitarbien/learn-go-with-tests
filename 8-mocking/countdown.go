@@ -9,18 +9,25 @@ import (
 
 const finalWord = "GO"
 const countdownStart = 3
+const sleep = "sleep"
+const write = "write"
 
 type Sleeper interface {
 	Sleep()
 }
 
 // for test
-type spySleeper struct {
-	Calls int
+type countdownOperationsSpy struct {
+	Calls []string
 }
 
-func (s *spySleeper) Sleep()  {
-	s.Calls++
+func (s *countdownOperationsSpy) Sleep()  {
+	s.Calls = append(s.Calls, sleep)
+}
+
+func (s *countdownOperationsSpy) Write(p []byte) (n int, err error) {
+	s.Calls = append(s.Calls, write)
+	return
 }
 
 // for production
