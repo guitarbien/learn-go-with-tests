@@ -4,12 +4,12 @@ import (
 	"net/http"
 )
 
-func Racer(urlA, urlB string) (winner string) {
+func Racer(urlA, urlB string) (winner string, err error) {
 	select {
 	case <- ping(urlA):
-		return urlA
+		return urlA, nil
 	case <- ping(urlB):
-		return urlB
+		return urlB, nil
 	}
 }
 
